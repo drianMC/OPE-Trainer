@@ -7,7 +7,7 @@
   <title>OPE Trainer</title>
   <link rel="manifest" href="manifest.json">
   <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=5">
+  <link rel="stylesheet" href="styles.css?v=6">
 </head>
 <body>
   <div class="app-shell">
@@ -17,12 +17,17 @@
         <p id="datasetMeta">Piloto de 20 preguntas</p>
       </div>
       <div class="install-area">
+        <button id="menuButton" class="menu-button secondary" type="button" aria-controls="controlPanel" aria-expanded="false" aria-label="Abrir controles">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
         <button id="installButton" class="secondary hidden" type="button">Instalar</button>
       </div>
     </header>
 
     <main class="layout">
-      <aside class="panel sidebar" aria-label="Controles">
+      <aside id="controlPanel" class="panel sidebar" aria-label="Controles">
         <details class="control-section" id="bankDetails" open>
           <summary>Banco</summary>
           <div id="bankFilters" class="segmented"></div>
@@ -69,9 +74,15 @@
 
       <section class="workspace">
         <div class="question-toolbar">
-          <button id="prevQuestion" class="secondary" type="button">Anterior</button>
+          <button id="prevQuestion" class="secondary nav-button" type="button" aria-label="Pregunta anterior">
+            <span class="nav-text">Anterior</span>
+            <span class="nav-icon" aria-hidden="true">&lt;</span>
+          </button>
           <div id="questionCounter" class="counter">0 / 0</div>
-          <button id="nextQuestion" class="secondary" type="button">Siguiente</button>
+          <button id="nextQuestion" class="secondary nav-button" type="button" aria-label="Pregunta siguiente">
+            <span class="nav-text">Siguiente</span>
+            <span class="nav-icon" aria-hidden="true">&gt;</span>
+          </button>
         </div>
 
         <article class="panel question-card">
@@ -88,22 +99,18 @@
         <article id="explanationPanel" class="panel explanation">
           <h2>Resolución documentada</h2>
           <dl>
-            <dt>Respuesta</dt>
-            <dd id="answerLabel"></dd>
             <dt>Fundamento</dt>
             <dd id="foundation"></dd>
             <dt>Normativa</dt>
             <dd id="normative"></dd>
             <dt>Observaciones</dt>
             <dd id="observations"></dd>
-            <dt>Para memorizar</dt>
-            <dd id="memorize"></dd>
           </dl>
         </article>
       </section>
     </main>
   </div>
 
-  <script type="module" src="src/app.js?v=5"></script>
+  <script type="module" src="src/app.js?v=6"></script>
 </body>
 </html>

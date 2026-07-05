@@ -28,13 +28,13 @@ const els = {
   options: $("#options"),
   answerFeedback: $("#answerFeedback"),
   explanationPanel: $("#explanationPanel"),
-  answerLabel: $("#answerLabel"),
   foundation: $("#foundation"),
   normative: $("#normative"),
   observations: $("#observations"),
-  memorize: $("#memorize"),
   prevQuestion: $("#prevQuestion"),
   nextQuestion: $("#nextQuestion"),
+  controlPanel: $("#controlPanel"),
+  menuButton: $("#menuButton"),
   onlyVerified: $("#onlyVerified"),
   onlyUnanswered: $("#onlyUnanswered"),
   onlyWrong: $("#onlyWrong"),
@@ -55,7 +55,7 @@ async function init() {
   const response = await fetch("data/pilot.json", { cache: "no-store" });
   const data = await response.json();
   state.questions = data.questions;
-  els.datasetMeta.textContent = `${data.questions.length} preguntas piloto Â· ${data.version}`;
+  els.datasetMeta.textContent = `${data.questions.length} preguntas piloto · ${data.version}`;
 
   renderBankFilters();
   bindEvents();
@@ -123,6 +123,12 @@ function bindEvents() {
     }
   });
 
+  els.menuButton.addEventListener("click", () => {
+    const open = els.controlPanel.classList.toggle("is-open");
+    els.menuButton.setAttribute("aria-expanded", String(open));
+    els.menuButton.setAttribute("aria-label", open ? "Cerrar controles" : "Abrir controles");
+  });
+
   els.resetStats.addEventListener("click", () => {
     clearProgress();
     state.progress = {};
@@ -157,8 +163,12 @@ function configureResponsiveControls() {
 
   bank.open = true;
   mode.open = true;
-  filterDetails.open = !mobile;
-  progressDetails.open = !mobile;
+  filterDetails.open = true;
+  progressDetails.open = true;
+  if (!mobile) {
+    els.controlPanel.classList.remove("is-open");
+    els.menuButton.setAttribute("aria-expanded", "false");
+  }
 }
 
 function applyFilters() {
@@ -246,15 +256,17 @@ function renderExplanation(question, entry) {
   const reveal = state.mode === "study" || Boolean(entry);
   els.explanationPanel.classList.toggle("hidden", !reveal);
 
-  els.answerLabel.textContent = question.answerLabel || "Sin respuesta unica";
   els.foundation.textContent = question.foundation || "Sin fundamento cargado.";
   els.normative.textContent = question.normative || "Sin normativa cargada.";
   els.observations.textContent = question.observations || "Sin observaciones.";
-  els.memorize.textContent = question.memorize || "Sin resumen.";
 
   if (!entry) {
     if (state.mode === "study") {
-      showFeedback(question.status === "verified" ? "Modo estudio: respuesta visible." : "Pregunta con incidencia documental: revisar observaciones.", question.status === "verified" ? "" : "warn");
+      if (question.status === "verified") {
+        els.answerFeedback.classList.add("hidden");
+      } else {
+        showFeedback("Pregunta con incidencia documental: revisar observaciones.", "warn");
+      }
     } else {
       els.answerFeedback.classList.add("hidden");
     }
@@ -264,7 +276,7 @@ function renderExplanation(question, entry) {
   if (isSpecialStatus(question)) {
     showFeedback("Pregunta conflictiva: no se computa como fallo ordinario.", "warn");
   } else if (entry.isCorrect) {
-    showFeedback("Correcta.", "");
+    els.answerFeedback.classList.add("hidden");
   } else {
     showFeedback("Incorrecta. Revisa el fundamento y la normativa.", "bad");
   }
@@ -313,7 +325,7 @@ function renderBankProgress(currentScopeStats) {
       <div class="bank-progress-row">
         <div>
           <strong>${label}</strong>
-          <span>${stats.answered}/${stats.total} respondidas Â· ${stats.pending} sin responder</span>
+          <span>${stats.answered}/${stats.total} respondidas · ${stats.pending} sin responder</span>
         </div>
         <div class="progress-track"><span style="width:${stats.total ? Math.round((stats.answered / stats.total) * 100) : 0}%"></span></div>
       </div>
@@ -323,7 +335,7 @@ function renderBankProgress(currentScopeStats) {
     <div class="bank-progress-row current">
       <div>
         <strong>Grupo actual</strong>
-        <span>${currentScopeStats.answered}/${currentScopeStats.total} respondidas Â· ${currentScopeStats.pending} sin responder</span>
+        <span>${currentScopeStats.answered}/${currentScopeStats.total} respondidas · ${currentScopeStats.pending} sin responder</span>
       </div>
       <div class="progress-track"><span style="width:${currentScopeStats.total ? Math.round((currentScopeStats.answered / currentScopeStats.total) * 100) : 0}%"></span></div>
     </div>
