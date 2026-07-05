@@ -1,0 +1,744 @@
+{
+  "version": "pilot-001",
+  "title": "OPE Trainer",
+  "generatedFrom": "Markdown manuals and extracted question JSON",
+  "questions": [
+    {
+      "id": "informatica-001",
+      "bank": "informatica",
+      "bankTitle": "Tecnico/a Superior Informatica",
+      "block": "001",
+      "number": 1,
+      "status": "verified",
+      "statusLabel": "🟢 VERIFICADA",
+      "question": "Qu capa del modelo OSI se relaciona con la transmisin de bits puros a travs de un canal de transmisin?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Enlace."
+        },
+        {
+          "key": "b",
+          "text": "Transporte."
+        },
+        {
+          "key": "c",
+          "text": "Fsica."
+        },
+        {
+          "key": "d",
+          "text": "Red."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "answerLabel": "c)",
+      "foundation": "La transmision de bits puros por un canal de transmision corresponde a la capa fisica del modelo OSI. Es la capa 1 y se ocupa de la transmision de bits sobre el medio fisico.",
+      "normative": "ITU-T Recommendation X.200 / ISO/IEC 7498-1, Basic Reference Model, capa fisica.",
+      "observations": "La pregunta usa la descripcion clasica de capa fisica: transmision de bits no estructurados sobre el medio.",
+      "memorize": "Bits sobre el medio = capa fisica.",
+      "sourceFile": "001.md"
+    },
+    {
+      "id": "informatica-002",
+      "bank": "informatica",
+      "bankTitle": "Tecnico/a Superior Informatica",
+      "block": "001",
+      "number": 2,
+      "status": "verified",
+      "statusLabel": "🟢 VERIFICADA",
+      "question": "Qu capa del modelo OSI ofrece los servicios: control del dilogo, manejo de tokens y sincronizacin?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Transporte."
+        },
+        {
+          "key": "b",
+          "text": "Sesin."
+        },
+        {
+          "key": "c",
+          "text": "Presentacin."
+        },
+        {
+          "key": "d",
+          "text": "Aplicacin."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "answerLabel": "b)",
+      "foundation": "El control del dialogo, el manejo de tokens y la sincronizacion son funciones propias de la capa de sesion del modelo OSI.",
+      "normative": "ITU-T Recommendation X.200 / ISO/IEC 7498-1, Basic Reference Model, capa de sesion.",
+      "observations": "No corresponde a presentacion, que trata la sintaxis/representacion de datos, ni a transporte, que proporciona transferencia extremo a extremo.",
+      "memorize": "Dialogo, tokens y sincronizacion = sesion.",
+      "sourceFile": "001.md"
+    },
+    {
+      "id": "informatica-003",
+      "bank": "informatica",
+      "bankTitle": "Tecnico/a Superior Informatica",
+      "block": "001",
+      "number": 3,
+      "status": "verified",
+      "statusLabel": "🟢 VERIFICADA",
+      "question": "Qu capa del modelo OSI determina cmo se encaminan los paquetes desde el origen al destino?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Enlace."
+        },
+        {
+          "key": "b",
+          "text": "Red."
+        },
+        {
+          "key": "c",
+          "text": "Transporte."
+        },
+        {
+          "key": "d",
+          "text": "Sesin."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "answerLabel": "b)",
+      "foundation": "La determinacion de rutas y encaminamiento de paquetes desde origen a destino corresponde a la capa de red del modelo OSI.",
+      "normative": "ITU-T Recommendation X.200 / ISO/IEC 7498-1, Basic Reference Model, capa de red.",
+      "observations": "En TCP/IP, la funcion equivalente se asocia al nivel Internet/IP.",
+      "memorize": "Encaminamiento = red.",
+      "sourceFile": "001.md"
+    },
+    {
+      "id": "informatica-004",
+      "bank": "informatica",
+      "bankTitle": "Tecnico/a Superior Informatica",
+      "block": "001",
+      "number": 4,
+      "status": "verified",
+      "statusLabel": "🟢 VERIFICADA",
+      "question": "En qu capa del modelo TCP/IP se define el protocolo SMTP?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Enlace."
+        },
+        {
+          "key": "b",
+          "text": "Sesin."
+        },
+        {
+          "key": "c",
+          "text": "Transporte."
+        },
+        {
+          "key": "d",
+          "text": "Aplicacin."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "answerLabel": "d)",
+      "foundation": "SMTP es un protocolo de aplicacion para transferencia de correo electronico. En la arquitectura TCP/IP se ubica en la capa de aplicacion.",
+      "normative": "RFC 5321, Simple Mail Transfer Protocol; RFC 1123, Requirements for Internet Hosts - Application and Support.",
+      "observations": "La marca `[PAGE 2]` detectada por el parser no forma parte de la opcion d).",
+      "memorize": "SMTP = aplicacion.",
+      "sourceFile": "001.md"
+    },
+    {
+      "id": "informatica-005",
+      "bank": "informatica",
+      "bankTitle": "Tecnico/a Superior Informatica",
+      "block": "001",
+      "number": 5,
+      "status": "verified",
+      "statusLabel": "🟢 VERIFICADA",
+      "question": "Cul de los siguientes protocolos encuadraras en la capa interred del modelo TCP/IP?",
+      "options": [
+        {
+          "key": "a",
+          "text": "IP."
+        },
+        {
+          "key": "b",
+          "text": "DSL."
+        },
+        {
+          "key": "c",
+          "text": "Ethernet."
+        },
+        {
+          "key": "d",
+          "text": "DNS."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "answerLabel": "a)",
+      "foundation": "IP es el protocolo principal de la capa Internet o interred en TCP/IP. DNS es aplicacion, Ethernet pertenece al acceso/enlace y DSL es tecnologia de acceso fisico/enlace.",
+      "normative": "RFC 791, Internet Protocol; RFC 1122, apartado Internet Layer Protocols.",
+      "observations": "La pregunta usa \"interred\" como equivalente a Internet layer.",
+      "memorize": "Interred TCP/IP = IP.",
+      "sourceFile": "001.md"
+    },
+    {
+      "id": "informatica-053",
+      "bank": "informatica",
+      "bankTitle": "Tecnico/a Superior Informatica",
+      "block": "006",
+      "number": 53,
+      "status": "pending",
+      "statusLabel": "🟡 ALTA PROBABILIDAD",
+      "question": "Cul de los siguientes es un tipo de VLAN vlido?",
+      "options": [
+        {
+          "key": "a",
+          "text": "VLAN de nivel 1: se asignan los hosts a una VLAN en funcin de la direccin MAC de aquellos."
+        },
+        {
+          "key": "b",
+          "text": "VLAN de nivel 2 por direccin MAC: la VLAN viene determinada por el contenido del campo de tipo de protocolo de la trama MAC."
+        },
+        {
+          "key": "c",
+          "text": "VLAN de nivel 3 por direcciones de subred: en este caso son los paquetes y no las estaciones finales quienes pertenecen a una VLAN u otra en funcin de su cabecera de nivel 3."
+        },
+        {
+          "key": "d",
+          "text": "VLAN de niveles superiores: los miembros de la LAN se diferencian por el puerto al que estn conectados al conmutador o medio fsico que constituye la red."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "answerLabel": "c)",
+      "foundation": "Una VLAN de nivel 3 puede clasificarse segun informacion de capa de red, como direcciones de subred. Las otras opciones intercambian definiciones: por puerto seria nivel 1 y por MAC seria nivel 2.",
+      "normative": "IEEE 802.1Q, VLAN bridging. Pendiente de localizar fuente oficial textual sobre la clasificacion historica por niveles 1, 2, 3 y superiores.",
+      "observations": "La pregunta cruza pagina. La opcion c) es la unica definicion tecnicamente coherente, pero no queda elevada a verificada sin soporte oficial textual suficiente.",
+      "memorize": "VLAN nivel 3 = subred/protocolo de red.",
+      "sourceFile": "006.md"
+    },
+    {
+      "id": "informatica-091",
+      "bank": "informatica",
+      "bankTitle": "Tecnico/a Superior Informatica",
+      "block": "010",
+      "number": 91,
+      "status": "pending",
+      "statusLabel": "🟡 ALTA PROBABILIDAD",
+      "question": "Cul es el objetivo principal del proceso de normalizacin en el diseo de bases de datos relacionales?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Aumentar la velocidad de las consultas (performance) y la eficiencia del hardware."
+        },
+        {
+          "key": "b",
+          "text": "Asegurar que la base de datos sea compatible con mltiples sistemas operativos."
+        },
+        {
+          "key": "c",
+          "text": "Eliminar la redundancia de los datos y prevenir anomalas de actualizacin, insercin y borrado."
+        },
+        {
+          "key": "d",
+          "text": "Definir la interfaz de usuario para interactuar con los datos almacenados."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "answerLabel": "c)",
+      "foundation": "La normalizacion en bases de datos relacionales se orienta a reducir redundancias y evitar anomalias de insercion, actualizacion y borrado. La respuesta es tecnicamente correcta, pero en esta revision no se ha localizado una fuente oficial admisible del temario que permita elevarla a verificada.",
+      "normative": "Pendiente de fuente oficial admisible.",
+      "observations": "No se da por verificada por no tratarse de normativa ni documentacion oficial de fabricante localizada.",
+      "memorize": "Normalizar = menos redundancia y menos anomalias.",
+      "sourceFile": "010.md"
+    },
+    {
+      "id": "informatica-093",
+      "bank": "informatica",
+      "bankTitle": "Tecnico/a Superior Informatica",
+      "block": "010",
+      "number": 93,
+      "status": "verified",
+      "statusLabel": "🟢 VERIFICADA",
+      "question": "Qu trmino describe un atributo en una tabla (Entidad A) cuyos valores deben coincidir con los valores de la clave primaria de otra tabla (Entidad B)?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Clave primaria."
+        },
+        {
+          "key": "b",
+          "text": "Clave candidata."
+        },
+        {
+          "key": "c",
+          "text": "Clave fornea."
+        },
+        {
+          "key": "d",
+          "text": "Clave principal."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "answerLabel": "c)",
+      "foundation": "Una clave foranea es la columna o conjunto de columnas que establece un enlace entre datos de dos tablas; en la referencia, las columnas de una tabla referencian el valor de clave primaria de otra.",
+      "normative": "Microsoft Learn, SQL Server, \"Primary and foreign key constraints\", apartado \"Foreign key constraints\": define la foreign key como columna o combinacion de columnas que enlaza dos tablas y referencia la clave primaria de otra tabla.",
+      "observations": "La clave primaria identifica filas en su propia tabla; la foranea referencia otra tabla.",
+      "memorize": "Foreign key = referencia a otra tabla.",
+      "sourceFile": "010.md"
+    },
+    {
+      "id": "informatica-101",
+      "bank": "informatica",
+      "bankTitle": "Tecnico/a Superior Informatica",
+      "block": "011",
+      "number": 101,
+      "status": "multiple_possible",
+      "statusLabel": "⚠️ DOS RESPUESTAS POSIBLES",
+      "question": "Cul de las siguientes afirmaciones es falsa respecto a SAP HANA y la tecnologa que utiliza?",
+      "options": [
+        {
+          "key": "a",
+          "text": "SAP HANA se basa en un almacenamiento basado en columnas, que permite alcanzar mayor rapidez en el acceso a datos en memoria, a la vez que disminuye los requisitos de uso de memoria."
+        },
+        {
+          "key": "b",
+          "text": "Dado que SAP HANA funciona manipulando datos almacenados en la memoria del dispositivo, necesita una mquina con al menos 1TB de memoria para poder funcionar."
+        },
+        {
+          "key": "c",
+          "text": "La portabilidad de aplicaciones web basadas en SQL Server a SAP HANA es sencilla, precisando en muchos casos nicamente la actualizacin de la librera ODBC/JDBC de SQL Server a SAP HANA."
+        },
+        {
+          "key": "d",
+          "text": "SAP HANA incluye un servidor propio de aplicaciones, SAP HANA XS, que utiliza Server-side JavaScript (XSJS) como lenguaje principal."
+        }
+      ],
+      "correct": [
+        "b",
+        "c"
+      ],
+      "answerLabel": "b) y c)",
+      "foundation": "La opcion b) es falsa porque SAP HANA es in-memory, pero no existe un minimo universal de 1 TB para que pueda funcionar; el dimensionamiento depende de datos, carga y escenario. La opcion c) tambien es falsa o, como minimo, engañosa: migrar aplicaciones SQL Server a SAP HANA no puede reducirse de forma general a sustituir el driver ODBC/JDBC, porque pueden intervenir dialecto SQL, tipos de datos, procedimientos, funciones, rendimiento y modelo de datos.",
+      "normative": "SAP, \"What is SAP HANA?\", apartados \"What is an in-memory database?\", \"Step 3: Size your SAP HANA requirements\" y \"Application development\". SAP indica que se dimensiona la memoria segun el conjunto principal de datos y que HANA ofrece librerias cliente, no que la portabilidad desde SQL Server sea automatica.",
+      "observations": "La pregunta pide una unica afirmacion falsa, pero hay al menos dos afirmaciones no aceptables. Debe tratarse como pregunta conflictiva.",
+      "memorize": "In-memory no implica 1 TB universal; cambiar driver no migra una aplicacion.",
+      "sourceFile": "011.md"
+    },
+    {
+      "id": "informatica-102",
+      "bank": "informatica",
+      "bankTitle": "Tecnico/a Superior Informatica",
+      "block": "011",
+      "number": 102,
+      "status": "verified",
+      "statusLabel": "🟢 VERIFICADA",
+      "question": "Qu sistema gestor de bases de datos est soportado por SAP S/4HANA?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Solamente SAP HANA."
+        },
+        {
+          "key": "b",
+          "text": "Solamente Oracle."
+        },
+        {
+          "key": "c",
+          "text": "Solamente PostgreSQL."
+        },
+        {
+          "key": "d",
+          "text": "Cualquiera de los tres citados."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "answerLabel": "a)",
+      "foundation": "SAP S/4HANA esta construido y optimizado para SAP HANA. La documentacion oficial SAP describe SAP S/4HANA como ERP cloud y como solucion powered by SAP HANA.",
+      "normative": "SAP, \"What is SAP HANA?\", apartado \"What solutions run on SAP HANA?\", donde identifica SAP S/4HANA como ERP powered by SAP HANA. SAP, pagina de SAP S/4HANA Cloud Public Edition, preguntas frecuentes y descripcion del producto.",
+      "observations": "La pregunta se refiere a S/4HANA, no a SAP Business Suite/ECC clasico, que historicamente podia ejecutarse sobre otros SGBD.",
+      "memorize": "S/4HANA = SAP HANA como base.",
+      "sourceFile": "011.md"
+    },
+    {
+      "id": "mantenimiento-001",
+      "bank": "mantenimiento",
+      "bankTitle": "Tecnico/a Superior de Mantenimiento e Instalaciones",
+      "block": "001",
+      "number": 1,
+      "status": "verified",
+      "statusLabel": "🟢 Verificada",
+      "question": "Segn el Real Decreto 178/2021, de 23 de marzo, por el que se modifica el Real Decreto 1027/2007, en su artculo 2. mbito de aplicacin, solamente considera instalaciones fijas de climatizacin a:",
+      "options": [
+        {
+          "key": "a",
+          "text": "Las destinadas a atender la demanda de bienestar trmico e higiene de las personas, o las instalaciones destinadas a la produccin de agua caliente sanitaria (ACS), incluidas las interconexiones a redes urbanas de calefaccin o refrigeracin y los sistemas de automatizacin y control."
+        },
+        {
+          "key": "b",
+          "text": "Las destinadas a atender la demanda de bienestar trmico e higiene de las personas, o las instalaciones destinadas a la produccin de agua caliente sanitaria (ACS), sin incluir las interconexiones a redes urbanas de calefaccin o refrigeracin y los sistemas de automatizacin y control."
+        },
+        {
+          "key": "c",
+          "text": "Las destinadas a atender la demanda de bienestar trmico e higiene de las personas y animales, o las instalaciones destinadas a la produccin de agua caliente sanitaria (ACS), sin incluir las interconexiones a redes urbanas de calefaccin o refrigeracin y los sistemas de automatizacin y control."
+        },
+        {
+          "key": "d",
+          "text": "Las destinadas a atender la demanda de bienestar trmico e higiene de las personas, animales y plantas, o las instalaciones destinadas a la produccin de agua caliente sanitaria (ACS)."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "answerLabel": "a) Las destinadas a atender la demanda de bienestar termico e higiene de las personas, o las instalaciones destinadas a la produccion de agua caliente sanitaria (ACS), incluidas las interconexiones a redes urbanas de calefaccion o refrigeracion y los sistemas de automatizacion y control.",
+      "foundation": "El RITE define las instalaciones termicas como instalaciones fijas de climatizacion destinadas al bienestar termico e higiene de las personas, o a la produccion de ACS. Desde la modificacion de 2021 incluye expresamente interconexiones a redes urbanas de calefaccion/refrigeracion y sistemas de automatizacion y control.",
+      "normative": "Real Decreto 1027/2007, Anexo, Parte I, Capitulo I, articulo 2.1.a).",
+      "observations": "La opcion correcta reproduce el ambito material del articulo 2.1.a). Las opciones b), c) y d) introducen exclusiones o destinatarios no previstos por la norma.",
+      "memorize": "RITE: climatizacion para personas, ACS, redes urbanas y automatizacion/control.",
+      "sourceFile": "001_RITE_001_010.md"
+    },
+    {
+      "id": "mantenimiento-002",
+      "bank": "mantenimiento",
+      "bankTitle": "Tecnico/a Superior de Mantenimiento e Instalaciones",
+      "block": "001",
+      "number": 2,
+      "status": "verified",
+      "statusLabel": "🟢 Verificada",
+      "question": "Segn el Real Decreto 178/2021, de 23 de marzo, por el que se modifica el Real Decreto 1027/2007, en su artculo 2, el RITE se aplicar a los edificios de nueva construccin, pero respecto a las instalaciones trmicas de edificios existentes indica que:",
+      "options": [
+        {
+          "key": "a",
+          "text": "Les es de igual aplicacin, y les da un plazo de 5 aos para adecuarse al nuevo decreto."
+        },
+        {
+          "key": "b",
+          "text": "A las instalaciones trmicas que se reformen en los edificios existentes, exclusivamente en lo que a la parte reformada se refiere, as como en lo relativo al mantenimiento, uso e inspeccin de todas las instalaciones trmicas, con las limitaciones que en el mismo se determinan."
+        },
+        {
+          "key": "c",
+          "text": "Aunque se haga una reforma parcial en un edificio existente, las instalaciones trmicas en su totalidad les ser de aplicacin."
+        },
+        {
+          "key": "d",
+          "text": "A las instalaciones trmicas que se reformen en los edificios existentes, exclusivamente en lo que a la parte reformada se refiere, pero excluyendo del mismo el mantenimiento, uso e inspeccin de todas las instalaciones trmicas, con las limitaciones que en el mismo se determinan"
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "answerLabel": "b) A las instalaciones termicas que se reformen en los edificios existentes, exclusivamente en lo que a la parte reformada se refiere, asi como en lo relativo al mantenimiento, uso e inspeccion de todas las instalaciones termicas, con las limitaciones que en el mismo se determinan.",
+      "foundation": "En edificios existentes el RITE no impone una adaptacion integral automatica por la mera existencia del edificio. Se aplica a la parte reformada y, ademas, al mantenimiento, uso e inspeccion de todas las instalaciones termicas.",
+      "normative": "Real Decreto 1027/2007, Anexo, Parte I, Capitulo I, articulo 2.2.b).",
+      "observations": "La opcion b) es la unica que conserva simultaneamente los dos elementos normativos: parte reformada y mantenimiento/uso/inspeccion de todas las instalaciones.",
+      "memorize": "Edificio existente: RITE para la parte reformada y para mantenimiento, uso e inspeccion.",
+      "sourceFile": "001_RITE_001_010.md"
+    },
+    {
+      "id": "mantenimiento-003",
+      "bank": "mantenimiento",
+      "bankTitle": "Tecnico/a Superior de Mantenimiento e Instalaciones",
+      "block": "001",
+      "number": 3,
+      "status": "verified",
+      "statusLabel": "🟢 Verificada",
+      "question": "Segn el Real Decreto 178/2021, de 23 de marzo, por el que se modifica el Real Decreto 1027/2007, en su artculo 2, considera reforma:",
+      "options": [
+        {
+          "key": "a",
+          "text": "La incorporacin de nuevos subsistemas de climatizacin o de produccin de agua caliente sanitaria o la modificacin de los existentes."
+        },
+        {
+          "key": "b",
+          "text": "La sustitucin de un generador de calor o fro por otro, aunque sea de las mismas caractersticas. ===== PAGE 2 ===== 2"
+        },
+        {
+          "key": "c",
+          "text": "La reduccin del nmero de equipos generadores"
+        },
+        {
+          "key": "d",
+          "text": "El cambio del tipo de energa utilizada, exceptuando la incorporacin de energas renovables."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "answerLabel": "a) La incorporacion de nuevos subsistemas de climatizacion o de produccion de agua caliente sanitaria o la modificacion de los existentes.",
+      "foundation": "El articulo 2.3 considera reforma la incorporacion de nuevos subsistemas de climatizacion o ACS, o la modificacion de los existentes. Las restantes opciones no reproducen correctamente la norma: la sustitucion de generador se contempla cuando es por otro de diferentes caracteristicas; la norma habla de ampliacion del numero de equipos generadores, no de reduccion; y el cambio de energia incluye la incorporacion de renovables, no la exceptua.",
+      "normative": "Real Decreto 1027/2007, Anexo, Parte I, Capitulo I, articulo 2.3.a), 2.3.b), 2.3.c) y 2.3.d).",
+      "observations": "Pregunta sin conflicto: aunque el articulo 2.3 contiene varios supuestos de reforma, entre las opciones propuestas solo la a) coincide literalmente con un supuesto normativo.",
+      "memorize": "Incorporar o modificar subsistemas de climatizacion o ACS es reforma RITE.",
+      "sourceFile": "001_RITE_001_010.md"
+    },
+    {
+      "id": "mantenimiento-004",
+      "bank": "mantenimiento",
+      "bankTitle": "Tecnico/a Superior de Mantenimiento e Instalaciones",
+      "block": "001",
+      "number": 4,
+      "status": "verified",
+      "statusLabel": "🟢 Verificada",
+      "question": "Segn el Real Decreto 178/2021, de 23 de marzo, por el que se modifica el Real Decreto 1027/2007, en su artculo 2, considera reforma la sustitucin o reposicin de un generador de calor o fro por otro de similares caractersticas, aunque ello no suponga una modificacin del proyecto o memoria tcnica:",
+      "options": [
+        {
+          "key": "a",
+          "text": "Falso, si son de similar potencia, no s considera reforma."
+        },
+        {
+          "key": "b",
+          "text": "Falso. No se considera reforma"
+        },
+        {
+          "key": "c",
+          "text": "Falso. No se puede reponer o sustituir un generador, est complemente prohibido."
+        },
+        {
+          "key": "d",
+          "text": "Verdadero."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "answerLabel": "d) Verdadero.",
+      "foundation": "Tras la modificacion del RITE, se considera reforma la sustitucion o reposicion de un generador de calor o frio por otro de similares caracteristicas aunque no suponga modificacion de proyecto o memoria tecnica.",
+      "normative": "Real Decreto 1027/2007, Anexo, Parte I, Capitulo I, articulo 2.3.b).",
+      "observations": "La pregunta reproduce el supuesto normativo introducido en el articulo 2.3.b). No hay base para excluirlo por similar potencia o similares caracteristicas.",
+      "memorize": "Sustituir o reponer generador similar tambien es reforma.",
+      "sourceFile": "001_RITE_001_010.md"
+    },
+    {
+      "id": "mantenimiento-005",
+      "bank": "mantenimiento",
+      "bankTitle": "Tecnico/a Superior de Mantenimiento e Instalaciones",
+      "block": "001",
+      "number": 5,
+      "status": "verified",
+      "statusLabel": "🟢 Verificada",
+      "question": "Segn el Real Decreto 178/2021, de 23 de marzo, por el que se modifica el Real Decreto 1027/2007, en su artculo 2, considera que:",
+      "options": [
+        {
+          "key": "a",
+          "text": "Ser de aplicacin el RITE a las instalaciones trmicas de procesos industriales, agrcolas o de otro tipo, hasta en la parte que no est destinada a atender la demanda de bienestar trmico e higiene de las personas"
+        },
+        {
+          "key": "b",
+          "text": "Que quedan excluidas las instalaciones industriales, agrcolas o de otro tipo por completo por estar regulados por normativas propias."
+        },
+        {
+          "key": "c",
+          "text": "No ser de aplicacin el RITE a las instalaciones trmicas de procesos industriales, agrcolas o de otro tipo, en la parte que no est destinada a atender la demanda de bienestar trmico e higiene de las personas"
+        },
+        {
+          "key": "d",
+          "text": "ser de aplicacin el RITE a las instalaciones trmicas de procesos exclusivamente agrcolas, incluyendo la parte que no est destinada a atender la demanda de bienestar trmico e higiene de las personas"
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "answerLabel": "c) No sera de aplicacion el RITE a las instalaciones termicas de procesos industriales, agricolas o de otro tipo, en la parte que no este destinada a atender la demanda de bienestar termico e higiene de las personas.",
+      "foundation": "El RITE excluye las instalaciones termicas de procesos industriales, agricolas u otros en la parte que no atienda la demanda de bienestar termico e higiene de las personas.",
+      "normative": "Real Decreto 1027/2007, Anexo, Parte I, Capitulo I, articulo 2.4.",
+      "observations": "La exclusion no es total por tipo de instalacion: depende de la finalidad de la parte concreta de la instalacion.",
+      "memorize": "Procesos industriales/agricolas fuera del RITE solo en la parte no destinada al bienestar e higiene de personas.",
+      "sourceFile": "001_RITE_001_010.md"
+    },
+    {
+      "id": "mantenimiento-038",
+      "bank": "mantenimiento",
+      "bankTitle": "Tecnico/a Superior de Mantenimiento e Instalaciones",
+      "block": "004",
+      "number": 38,
+      "status": "test_error",
+      "statusLabel": "🔴 Error del test",
+      "question": "En la IT3, del RITE, en su apartado IT 3.3 sobre el programa de mantenimiento preventivo, indica que la limpieza de los evaporadores en instalaciones menores o iguales a 70 kW de potencia se debe realizar con una periodicidad de:",
+      "options": [
+        {
+          "key": "a",
+          "text": "Una vez por temporada (6 meses)."
+        },
+        {
+          "key": "b",
+          "text": "Cada cuatro aos."
+        },
+        {
+          "key": "c",
+          "text": "Una vez por temporada (ao)."
+        },
+        {
+          "key": "d",
+          "text": "Una vez cada semana ===== PAGE 10 ===== 10"
+        }
+      ],
+      "correct": [],
+      "answerLabel": "ERROR DEL TEST. No hay una unica respuesta verificable en el BOE vigente para \"instalaciones menores o iguales a 70 kW\" formulado de modo general.",
+      "foundation": "La limpieza de evaporadores figura como operacion de mantenimiento preventivo para instalaciones de climatizacion en la tabla 3.2, aplicable a instalaciones de potencia util nominal menor o igual a 70 kW cuando no exista Manual de uso y mantenimiento. Pero el propio RITE indica que las periodicidades corresponden a las de la tabla 3.1, que varian segun uso, tipo de equipo y potencia. Por tanto, no puede afirmarse una periodicidad unica \"una vez por temporada (ano)\" para todo el conjunto <=70 kW.",
+      "normative": "Real Decreto 1027/2007, Parte II, IT 3.3, tabla 3.1 y tabla 3.2, apartado b) instalacion de climatizacion, operacion 1.",
+      "observations": "Si el test pretendia aplicar una tabla o redaccion anterior del RITE, debe indicarlo expresamente. Con normativa oficial vigente, la pregunta esta mal planteada.",
+      "memorize": "En <=70 kW, tabla 3.2 lista operaciones, pero la periodicidad se obtiene de tabla 3.1 segun uso/equipo.",
+      "sourceFile": "004_RITE_031_040.md"
+    },
+    {
+      "id": "mantenimiento-411",
+      "bank": "mantenimiento",
+      "bankTitle": "Tecnico/a Superior de Mantenimiento e Instalaciones",
+      "block": "042",
+      "number": 411,
+      "status": "test_error",
+      "statusLabel": "🔴 Error del test",
+      "question": "El Real Decreto 487/2022, se establecen los requisitos sanitarios para la prevencin y el control de la legionelosis En su Anexo IV, Parte B.2 con qu periodicidad establece que se realizar la revisin, limpieza y desinfeccin de los depsitos acumuladores de ACS?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Mensualmente."
+        },
+        {
+          "key": "b",
+          "text": "Semestralmente."
+        },
+        {
+          "key": "c",
+          "text": "Trimestralmente."
+        },
+        {
+          "key": "d",
+          "text": "Anualmente."
+        }
+      ],
+      "correct": [],
+      "answerLabel": "ERROR DEL TEST.",
+      "foundation": "El enunciado mezcla operaciones distintas. El Anexo IV, Parte B.2, establece que la revision del estado de mantenimiento de los depositos acumuladores de ACS se realizara trimestralmente, sin implicar obligatoriamente apertura y vaciado. Pero la revision, limpieza y desinfeccion de toda la instalacion de agua sanitaria se fija en la Parte B.1 al menos una vez al ano, sin superar 12 meses entre desinfecciones. Por tanto, no es correcto preguntar por una unica periodicidad de \"revision, limpieza y desinfeccion\" de acumuladores como si todo estuviera regulado en B.2.",
+      "normative": "Real Decreto 487/2022, Anexo IV, Parte B.1, apartado 1; Parte B.2, Agua caliente sanitaria.",
+      "observations": "Si el test pretendia preguntar solo por \"revision del estado de mantenimiento de los depositos acumuladores\", la respuesta seria trimestralmente. Si pretendia preguntar por limpieza y desinfeccion general de la instalacion, seria anualmente. El enunciado no debe forzarse.",
+      "memorize": "ACS: revision acumuladores trimestral; limpieza/desinfeccion general anual.",
+      "sourceFile": "042_LEGIONELLA_411_420.md"
+    },
+    {
+      "id": "mantenimiento-412",
+      "bank": "mantenimiento",
+      "bankTitle": "Tecnico/a Superior de Mantenimiento e Instalaciones",
+      "block": "042",
+      "number": 412,
+      "status": "verified",
+      "statusLabel": "🟢 Verificada",
+      "question": "El Real Decreto 487/2022, se establecen los requisitos sanitarios para la prevencin y el control de la legionelosis. Segn el Anexo IV, Parte B.1 del citado Real Decreto, con qu frecuencia deben revisarse los puntos terminales (grifos y duchas) mediante muestra rotatoria?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Semanalmente. ===== PAGE 84 ===== 84"
+        },
+        {
+          "key": "b",
+          "text": "Mensualmente."
+        },
+        {
+          "key": "c",
+          "text": "Trimestralmente."
+        },
+        {
+          "key": "d",
+          "text": "Bianualmente."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "answerLabel": "b) Mensualmente.",
+      "foundation": "La revision de puntos terminales, grifos y duchas, debe realizarse mensualmente mediante muestra rotatoria y al menos una vez al ano en todos los puntos terminales.",
+      "normative": "Real Decreto 487/2022, Anexo IV, Parte B.1, apartado 2.",
+      "observations": "La norma exige que al final del ano se hayan revisado todos los puntos terminales de la instalacion.",
+      "memorize": "Grifos y duchas: revision mensual rotatoria.",
+      "sourceFile": "042_LEGIONELLA_411_420.md"
+    },
+    {
+      "id": "mantenimiento-421",
+      "bank": "mantenimiento",
+      "bankTitle": "Tecnico/a Superior de Mantenimiento e Instalaciones",
+      "block": "043",
+      "number": 421,
+      "status": "pending",
+      "statusLabel": "🟡 Pendiente",
+      "question": "Segn el Decreto 21/2015, de 3 de marzo, del Gobierno Vasco, sobre gestin de residuos sanitarios en la Comunidad Autnoma de Euskadi, cul es el objetivo principal de la gestin de residuos sanitarios?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Incrementar el almacenamiento de residuos en centros sanitarios."
+        },
+        {
+          "key": "b",
+          "text": "Garantizar la proteccin de la salud pblica y del medio ambiente."
+        },
+        {
+          "key": "c",
+          "text": "Reducir nicamente los costes econmicos."
+        },
+        {
+          "key": "d",
+          "text": "Centralizar todos los residuos en hospitales pblicos. ===== PAGE 86 ===== 86"
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "answerLabel": "b) Garantizar la proteccion de la salud publica y del medio ambiente.",
+      "foundation": "Respuesta tecnica provisional coherente con la finalidad de la normativa de residuos sanitarios. No se eleva a verificada porque en esta revision no se ha localizado el texto oficial BOPV/Legegunea del Decreto 21/2015.",
+      "normative": "Pendiente de verificacion en Decreto 21/2015, de 3 de marzo, del Gobierno Vasco, sobre gestion de residuos sanitarios en la Comunidad Autonoma de Euskadi.",
+      "observations": "No se debe marcar como verificada hasta contrastar articulo exacto.",
+      "memorize": "Residuos sanitarios = proteger salud publica y medio ambiente.",
+      "sourceFile": "043_RESIDUOS_SANITARIOS_421_430.md"
+    },
+    {
+      "id": "mantenimiento-422",
+      "bank": "mantenimiento",
+      "bankTitle": "Tecnico/a Superior de Mantenimiento e Instalaciones",
+      "block": "043",
+      "number": 422,
+      "status": "pending",
+      "statusLabel": "🟡 Pendiente",
+      "question": "Segn el Decreto 21/2015 del Gobierno Vasco, qu grupo de residuos sanitarios incluye aquellos asimilables a residuos urbanos sin riesgo especfico?",
+      "options": [
+        {
+          "key": "a",
+          "text": "Grupo I"
+        },
+        {
+          "key": "b",
+          "text": "Grupo II"
+        },
+        {
+          "key": "c",
+          "text": "Grupo III."
+        },
+        {
+          "key": "d",
+          "text": "Grupo IV."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "answerLabel": "a) Grupo I.",
+      "foundation": "Respuesta tecnica provisional: los residuos sanitarios asimilables a urbanos y sin riesgo especifico suelen clasificarse como Grupo I. Pendiente de contraste literal en normativa oficial vasca.",
+      "normative": "Pendiente de verificacion en Decreto 21/2015, clasificacion de residuos sanitarios.",
+      "observations": "No se ha localizado fuente oficial accesible durante esta revision.",
+      "memorize": "Asimilables a urbanos = Grupo I.",
+      "sourceFile": "043_RESIDUOS_SANITARIOS_421_430.md"
+    }
+  ]
+}

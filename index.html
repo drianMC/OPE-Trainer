@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#2563eb">
+  <title>OPE Trainer</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?v=5">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div>
+        <h1>OPE Trainer</h1>
+        <p id="datasetMeta">Piloto de 20 preguntas</p>
+      </div>
+      <div class="install-area">
+        <button id="installButton" class="secondary hidden" type="button">Instalar</button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <aside class="panel sidebar" aria-label="Controles">
+        <details class="control-section" id="bankDetails" open>
+          <summary>Banco</summary>
+          <div id="bankFilters" class="segmented"></div>
+        </details>
+
+        <details class="control-section" id="modeDetails" open>
+          <summary>Modo</summary>
+          <div class="segmented">
+            <button class="is-active" type="button" data-mode="study">Estudio</button>
+            <button type="button" data-mode="test">Test</button>
+          </div>
+        </details>
+
+        <details class="control-section" id="filterDetails" open>
+          <summary>Filtros</summary>
+          <label class="check-row">
+            <input id="onlyVerified" type="checkbox">
+            <span>Solo preguntas verificadas</span>
+          </label>
+          <label class="check-row">
+            <input id="onlyUnanswered" type="checkbox">
+            <span>Solo sin responder</span>
+          </label>
+          <label class="check-row">
+            <input id="onlyWrong" type="checkbox">
+            <span>Solo preguntas falladas</span>
+          </label>
+          <p id="filterSummary" class="filter-summary">Mostrando todas las preguntas.</p>
+        </details>
+
+        <details class="control-section" id="progressDetails" open>
+          <summary>Progreso</summary>
+          <div class="stats-grid">
+            <div><strong id="statAnswered">0</strong><span>Respondidas</span></div>
+            <div><strong id="statPending">0</strong><span>Sin responder</span></div>
+            <div><strong id="statCorrect">0</strong><span>Aciertos</span></div>
+            <div><strong id="statWrong">0</strong><span>Fallos</span></div>
+            <div><strong id="statRate">0%</strong><span>Tasa</span></div>
+          </div>
+          <div id="bankProgress" class="bank-progress"></div>
+          <button id="resetStats" class="secondary full" type="button">Reiniciar piloto</button>
+        </details>
+      </aside>
+
+      <section class="workspace">
+        <div class="question-toolbar">
+          <button id="prevQuestion" class="secondary" type="button">Anterior</button>
+          <div id="questionCounter" class="counter">0 / 0</div>
+          <button id="nextQuestion" class="secondary" type="button">Siguiente</button>
+        </div>
+
+        <article class="panel question-card">
+          <div class="question-meta">
+            <span id="questionBank" class="tag">Banco</span>
+            <span id="questionStatus" class="status-pill">Estado</span>
+          </div>
+          <h2 id="questionTitle">Cargando preguntas...</h2>
+          <p id="questionText" class="question-text"></p>
+          <div id="options" class="options"></div>
+          <div id="answerFeedback" class="feedback hidden"></div>
+        </article>
+
+        <article id="explanationPanel" class="panel explanation">
+          <h2>Resolución documentada</h2>
+          <dl>
+            <dt>Respuesta</dt>
+            <dd id="answerLabel"></dd>
+            <dt>Fundamento</dt>
+            <dd id="foundation"></dd>
+            <dt>Normativa</dt>
+            <dd id="normative"></dd>
+            <dt>Observaciones</dt>
+            <dd id="observations"></dd>
+            <dt>Para memorizar</dt>
+            <dd id="memorize"></dd>
+          </dl>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="src/app.js?v=5"></script>
+</body>
+</html>
