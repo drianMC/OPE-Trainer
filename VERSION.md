@@ -36,3 +36,13 @@ Cambios:
 - La resolución documentada ya no muestra `Respuesta` ni `Para memorizar`.
 - Se corrigen textos visibles del piloto con tildes y caracteres degradados.
 - Cache PWA: `ope-trainer-pilot-v6`.
+
+## v0.3.1-pilot
+
+Cambios:
+
+- El botón `Instalar app` pasa al panel desplegable de controles.
+- El botón de instalación permanece visible aunque el navegador no dispare todavía el instalador automático.
+- Si la instalación automática no está disponible, se muestra una indicación para usar `Añadir a pantalla de inicio`.
+- El panel desplegable recibe un fondo azul suave para diferenciarlo del contenido.
+- Cache PWA: `ope-trainer-pilot-v7`.

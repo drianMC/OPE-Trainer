@@ -7,7 +7,7 @@
   <title>OPE Trainer</title>
   <link rel="manifest" href="manifest.json">
   <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=6">
+  <link rel="stylesheet" href="styles.css?v=7">
 </head>
 <body>
   <div class="app-shell">
@@ -22,12 +22,16 @@
           <span></span>
           <span></span>
         </button>
-        <button id="installButton" class="secondary hidden" type="button">Instalar</button>
       </div>
     </header>
 
     <main class="layout">
       <aside id="controlPanel" class="panel sidebar" aria-label="Controles">
+        <div class="install-box">
+          <button id="installButton" class="secondary full" type="button">Instalar app</button>
+          <p id="installHint" class="install-hint hidden">Si no aparece el instalador, usa el menú del navegador y elige Añadir a pantalla de inicio.</p>
+        </div>
+
         <details class="control-section" id="bankDetails" open>
           <summary>Banco</summary>
           <div id="bankFilters" class="segmented"></div>
@@ -111,6 +115,6 @@
     </main>
   </div>
 
-  <script type="module" src="src/app.js?v=6"></script>
+  <script type="module" src="src/app.js?v=7"></script>
 </body>
 </html>

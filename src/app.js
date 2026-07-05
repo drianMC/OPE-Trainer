@@ -47,6 +47,7 @@ const els = {
   bankProgress: $("#bankProgress"),
   resetStats: $("#resetStats"),
   installButton: $("#installButton"),
+  installHint: $("#installHint"),
 };
 
 init();
@@ -139,15 +140,18 @@ function bindEvents() {
   window.addEventListener("beforeinstallprompt", (event) => {
     event.preventDefault();
     state.deferredInstall = event;
-    els.installButton.classList.remove("hidden");
+    els.installHint.classList.add("hidden");
   });
 
   els.installButton.addEventListener("click", async () => {
-    if (!state.deferredInstall) return;
+    if (!state.deferredInstall) {
+      els.installHint.classList.remove("hidden");
+      return;
+    }
     state.deferredInstall.prompt();
     await state.deferredInstall.userChoice;
     state.deferredInstall = null;
-    els.installButton.classList.add("hidden");
+    els.installHint.classList.add("hidden");
   });
 
   window.addEventListener("resize", configureResponsiveControls);
