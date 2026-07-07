@@ -11,17 +11,17 @@ OUT = ROOT / "data" / "pilot.json"
 BANKS = [
     {
         "bank": "informatica",
-        "bankTitle": "Tecnico/a Superior Informatica",
+        "bankTitle": "Técnico/a Superior Informática",
         "questions": Path(r"C:\Codex\ope-Informatica\output\questions.json"),
+        "rawText": Path(r"C:\Codex\ope-Informatica\output\extracted_text.txt"),
         "manual": Path(r"C:\Codex\ope-Informatica\manual"),
-        "numbers": [1, 2, 3, 4, 5, 53, 91, 93, 101, 102],
     },
     {
         "bank": "mantenimiento",
-        "bankTitle": "Tecnico/a Superior de Mantenimiento e Instalaciones",
+        "bankTitle": "Técnico/a Superior de Mantenimiento e Instalaciones",
         "questions": Path(r"C:\Codex\ope-Mantenimiento\output\questions.json"),
+        "rawText": Path(r"C:\Codex\ope-Mantenimiento\output\extracted_text.txt"),
         "manual": Path(r"C:\Codex\ope-Mantenimiento\manual"),
-        "numbers": [1, 2, 3, 4, 5, 38, 411, 412, 421, 422],
     },
 ]
 
@@ -35,6 +35,11 @@ SECTION_NAMES = {
     "para memorizar": "memorize",
 }
 
+QUESTION_RE = re.compile(
+    r"(?ms)^\s*(\d{1,3})\.\s+(.*?)(?=^\s*\d{1,3}\.\s+|\Z)"
+)
+OPTION_RE = re.compile(r"(?ms)^\s*([abcd])\)\s*(.*?)(?=^\s*[abcd]\)\s*|\Z)")
+
 
 def read_text(path: Path) -> str:
     return path.read_text(encoding="utf-8-sig")
@@ -42,7 +47,175 @@ def read_text(path: Path) -> str:
 
 def clean_text(value: str) -> str:
     value = re.sub(r"\s+", " ", value.replace("\ufeff", " ")).strip()
+    value = re.sub(r"\s*===== PAGE \d+ =====\s*\d*", " ", value).strip()
     return value
+
+
+TEXT_FIXES = {
+    "Qu ": "Qué ",
+    " qu ": " qué ",
+    "Cul": "Cuál",
+    "Cules": "Cuáles",
+    "cmo": "cómo",
+    "Cmo": "Cómo",
+    "dnde": "dónde",
+    "Dnde": "Dónde",
+    "quin": "quién",
+    "Quin": "Quién",
+    "máquiéna": "máquina",
+    "Máquiéna": "Máquina",
+    "transmisin": "transmisión",
+    "travs": "través",
+    "dilogo": "diálogo",
+    "sincronizacin": "sincronización",
+    "sesin": "sesión",
+    "presentacin": "presentación",
+    "aplicacin": "aplicación",
+    "aplicaciones": "aplicaciones",
+    "fsica": "física",
+    "Fsica": "Física",
+    "lgica": "lógica",
+    "Lgica": "Lógica",
+    "funcin": "función",
+    "direccin": "dirección",
+    "direcciones": "direcciones",
+    "mltiples": "múltiples",
+    "anomalas": "anomalías",
+    "actualizacin": "actualización",
+    "insercin": "inserción",
+    "normalizacin": "normalización",
+    "diseo": "diseño",
+    "fornea": "foránea",
+    "tecnologa": "tecnología",
+    "mquina": "máquina",
+    "nicamente": "únicamente",
+    "librera": "librería",
+    "est ": "está ",
+    "estn": "están",
+    "estandarizacin": "estandarización",
+    "gestin": "gestión",
+    "informacin": "información",
+    "descripcin": "descripción",
+    "solucin": "solución",
+    "ejecucin": "ejecución",
+    "validacin": "validación",
+    "planificacin": "planificación",
+    "construccin": "construcción",
+    "transicin": "transición",
+    "autenticacin": "autenticación",
+    "autorizacin": "autorización",
+    "integridad": "integridad",
+    "criptografa": "criptografía",
+    "simtrica": "simétrica",
+    "asimtrica": "asimétrica",
+    "sesin": "sesión",
+    "cdigos": "códigos",
+    "poltica": "política",
+    "analtica": "analítica",
+    "preparacin": "preparación",
+    "histico": "histórico",
+    "relacin": "relación",
+    "jerrquico": "jerárquico",
+    "rbol": "árbol",
+    "minera": "minería",
+    "estadstica": "estadística",
+    "programacin": "programación",
+    "extraccin": "extracción",
+    "verificacin": "verificación",
+    "Administracin": "Administración",
+    "resolucin": "resolución",
+    "disposicin": "disposición",
+    "mximo": "máximo",
+    "mxima": "máxima",
+    "mnimo": "mínimo",
+    "mnima": "mínima",
+    "segn": "según",
+    "Segn": "Según",
+    "artculo": "artículo",
+    "Artculo": "Artículo",
+    "mbito": "Ámbito",
+    "trmico": "térmico",
+    "trmica": "térmica",
+    "trmicas": "térmicas",
+    "climatizacin": "climatización",
+    "produccin": "producción",
+    "calefaccin": "calefacción",
+    "refrigeracin": "refrigeración",
+    "automatizacin": "automatización",
+    "construccin": "construcción",
+    "aplicarn": "aplicarán",
+    "aplicar": "aplicará",
+    "instalacin": "instalación",
+    "instalaciones": "instalaciones",
+    "sustitucin": "sustitución",
+    "reposicin": "reposición",
+    "fro": "frío",
+    "caractersticas": "características",
+    "modificacin": "modificación",
+    "tcnica": "técnica",
+    "energa": "energía",
+    "agrcolas": "agrícolas",
+    "est ": "está ",
+    "prevencin": "prevención",
+    "legionelosis": "legionelosis",
+    "revisin": "revisión",
+    "desinfeccin": "desinfección",
+    "depsitos": "depósitos",
+    "frecuencia": "frecuencia",
+    "grifos": "grifos",
+    "gestin": "gestión",
+    "pblica": "pública",
+    "nicamente": "únicamente",
+    "econmicos": "económicos",
+    "pblicos": "públicos",
+    "Autnoma": "Autónoma",
+    "especfico": "específico",
+    "nmero": "número",
+    "nmeros": "números",
+    "autnomo": "autónomo",
+    "autnomos": "autónomos",
+    "quirofano": "quirófano",
+    "proteccion": "protección",
+    "proteccin": "protección",
+}
+
+
+def restore_visible_text(value: str) -> str:
+    text = clean_text(value)
+    for bad, good in sorted(TEXT_FIXES.items(), key=lambda item: len(item[0]), reverse=True):
+        text = text.replace(bad, good)
+    text = text.replace("máquiéna", "máquina")
+    text = text.replace("máquiénas", "máquinas")
+    text = text.replace("Máquiéna", "Máquina")
+    text = text.replace("cules", "cuáles")
+    text = text.replace("Cules", "Cuáles")
+    text = re.split(
+        r"\s+CASO PR.?CTICO\s+\d+|\s+DESCRIPCI.?N DEL CASO|\s+PREGUNTAS:\s+\d+",
+        text,
+        maxsplit=1,
+    )[0].strip()
+    if text.startswith(("Qué ", "Cuál ", "Cuáles ", "Cómo ", "Dónde ", "Quién ", "En qué ", "A qué ")):
+        text = "¿" + text
+    if text.startswith("En qué ") or text.startswith("A qué "):
+        text = "¿" + text
+    return text
+
+
+def parse_questions_from_text(path: Path) -> dict[int, dict[str, object]]:
+    raw = read_text(path)
+    parsed: dict[int, dict[str, object]] = {}
+    for match in QUESTION_RE.finditer(raw):
+        number = int(match.group(1))
+        block = match.group(2).strip()
+        options = {letter: restore_visible_text(body) for letter, body in OPTION_RE.findall(block)}
+        question_text = OPTION_RE.split(block, maxsplit=1)[0]
+        if number not in parsed:
+            parsed[number] = {
+                "number": number,
+                "question": restore_visible_text(question_text),
+                "options": options,
+            }
+    return parsed
 
 
 def normalize_status(label: str) -> str:
@@ -56,6 +229,15 @@ def normalize_status(label: str) -> str:
     if "verificada" in lowered or "verificado" in lowered:
         return "verified"
     return "pending"
+
+
+def status_label(status: str) -> str:
+    return {
+        "verified": "Verificada",
+        "pending": "Pendiente",
+        "test_error": "Error del test",
+        "multiple_possible": "Dos respuestas posibles",
+    }.get(status, "Pendiente")
 
 
 def parse_correct(answer_label: str) -> list[str]:
@@ -110,22 +292,32 @@ def load_manual_index(manual_dir: Path) -> tuple[dict[int, dict[str, str]], dict
 
 
 def build_bank(config: dict) -> list[dict]:
-    questions = {
+    questions_from_json = {
         int(item["number"]): item
         for item in json.loads(read_text(config["questions"]))
     }
+    questions_from_raw = parse_questions_from_text(config["rawText"])
+    questions = {}
+    for number, item in questions_from_json.items():
+        raw_item = questions_from_raw.get(number)
+        if raw_item and len(raw_item.get("options", {})) >= len(item.get("options", {})):
+            questions[number] = raw_item
+        else:
+            questions[number] = item
     manual, source_files = load_manual_index(config["manual"])
     result = []
 
-    for number in config["numbers"]:
+    numbers = sorted(set(questions) & set(manual))
+    for number in numbers:
         q = questions[number]
         m = manual[number]
         options = [
-            {"key": key, "text": clean_text(value)}
+            {"key": key, "text": restore_visible_text(value)}
             for key, value in sorted(q.get("options", {}).items())
         ]
-        status_label = m.get("statusLabel", "")
+        raw_status_label = m.get("statusLabel", "")
         answer_label = m.get("answerLabel", "")
+        status = normalize_status(raw_status_label)
         result.append(
             {
                 "id": f"{config['bank']}-{number:03d}",
@@ -133,11 +325,11 @@ def build_bank(config: dict) -> list[dict]:
                 "bankTitle": config["bankTitle"],
                 "block": source_files[number].split("_", 1)[0].replace(".md", ""),
                 "number": number,
-                "status": normalize_status(status_label),
-                "statusLabel": status_label,
-                "question": clean_text(q["question"]),
+                "status": status,
+                "statusLabel": status_label(status),
+                "question": restore_visible_text(q["question"]),
                 "options": options,
-                "correct": parse_correct(answer_label),
+                "correct": [] if status == "test_error" else parse_correct(answer_label),
                 "answerLabel": answer_label,
                 "foundation": m.get("foundation", ""),
                 "normative": m.get("normative", ""),
@@ -151,9 +343,9 @@ def build_bank(config: dict) -> list[dict]:
 
 def main() -> None:
     data = {
-        "version": "pilot-001",
+        "version": "full-001",
         "title": "OPE Trainer",
-        "generatedFrom": "Markdown manuals and extracted question JSON",
+        "generatedFrom": "Markdown manuals and extracted question JSON, full bank",
         "questions": [item for bank in BANKS for item in build_bank(bank)],
     }
     OUT.parent.mkdir(exist_ok=True)

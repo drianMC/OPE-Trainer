@@ -92,7 +92,7 @@ async function init() {
   const response = await fetch("data/pilot.json", { cache: "no-store" });
   const data = await response.json();
   state.questions = data.questions;
-  els.datasetMeta.textContent = `${data.questions.length} preguntas piloto · ${data.version}`;
+  els.datasetMeta.textContent = `${data.questions.length} preguntas · ${data.version}`;
 
   migrateLegacyProgress();
   renderBankFilters();

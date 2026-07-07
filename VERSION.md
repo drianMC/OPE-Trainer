@@ -72,3 +72,14 @@ Cambios:
 - El histórico de respuestas se agrupa por banco en desplegables independientes.
 - La tarjeta de `Configuración` muestra solo el alcance de la actividad preparada.
 - Cache PWA: `ope-trainer-pilot-v9`.
+
+## v1.0.0-full
+
+Cambios:
+
+- Se sustituye el banco piloto de 20 preguntas por el banco completo.
+- Carga total: 1000 preguntas, 500 de Informática y 500 de Mantenimiento.
+- Se conservan estados documentales, respuestas, fundamentos, normativa y observaciones.
+- Se normalizan etiquetas de estado visibles.
+- Se corrige el parser para recuperar opciones partidas por saltos de página en el PDF de mantenimiento.
+- Cache PWA: `ope-trainer-full-v10`.
