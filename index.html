@@ -7,7 +7,7 @@
   <title>OPE Trainer</title>
   <link rel="manifest" href="manifest.json">
   <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=7">
+  <link rel="stylesheet" href="styles.css?v=8">
 </head>
 <body>
   <div class="app-shell">
@@ -25,69 +25,105 @@
       </div>
     </header>
 
-    <main class="layout">
-      <aside id="controlPanel" class="panel sidebar" aria-label="Controles">
-        <div class="install-box">
-          <button id="installButton" class="secondary full" type="button">Instalar app</button>
-          <p id="installHint" class="install-hint hidden">Si no aparece el instalador, usa el menú del navegador y elige Añadir a pantalla de inicio.</p>
-        </div>
-
-        <details class="control-section" id="bankDetails" open>
-          <summary>Banco</summary>
-          <div id="bankFilters" class="segmented"></div>
-        </details>
-
-        <details class="control-section" id="modeDetails" open>
-          <summary>Modo</summary>
-          <div class="segmented">
-            <button class="is-active" type="button" data-mode="study">Estudio</button>
-            <button type="button" data-mode="test">Test</button>
+    <main>
+      <section id="configView" class="config-layout">
+        <aside id="controlPanel" class="panel sidebar" aria-label="Configuración">
+          <div class="install-box">
+            <button id="installButton" class="secondary full" type="button">Instalar app</button>
+            <p id="installHint" class="install-hint hidden">Si no aparece el instalador, usa el menú del navegador y elige Añadir a pantalla de inicio.</p>
           </div>
-        </details>
 
-        <details class="control-section" id="filterDetails" open>
-          <summary>Filtros</summary>
-          <label class="check-row">
-            <input id="onlyVerified" type="checkbox">
-            <span>Solo preguntas verificadas</span>
-          </label>
-          <label class="check-row">
-            <input id="onlyUnanswered" type="checkbox">
-            <span>Solo sin responder</span>
-          </label>
-          <label class="check-row">
-            <input id="onlyWrong" type="checkbox">
-            <span>Solo preguntas falladas</span>
-          </label>
-          <p id="filterSummary" class="filter-summary">Mostrando todas las preguntas.</p>
-        </details>
+          <details class="control-section" id="modeDetails" open>
+            <summary>Actividad</summary>
+            <div class="segmented">
+              <button class="is-active" type="button" data-config-mode="study">Estudio</button>
+              <button type="button" data-config-mode="exam">Ronda examen</button>
+              <button type="button" data-config-mode="review">Repasar falladas</button>
+            </div>
+          </details>
 
-        <details class="control-section" id="progressDetails" open>
-          <summary>Progreso</summary>
-          <div class="stats-grid">
-            <div><strong id="statAnswered">0</strong><span>Respondidas</span></div>
-            <div><strong id="statPending">0</strong><span>Sin responder</span></div>
-            <div><strong id="statCorrect">0</strong><span>Aciertos</span></div>
-            <div><strong id="statWrong">0</strong><span>Fallos</span></div>
-            <div><strong id="statRate">0%</strong><span>Tasa</span></div>
-          </div>
-          <div id="bankProgress" class="bank-progress"></div>
-          <button id="resetStats" class="secondary full" type="button">Reiniciar piloto</button>
-        </details>
-      </aside>
+          <details class="control-section" id="bankDetails" open>
+            <summary>Banco</summary>
+            <div id="bankFilters" class="segmented"></div>
+          </details>
 
-      <section class="workspace">
+          <details class="control-section" id="filterDetails" open>
+            <summary>Filtros</summary>
+            <label class="check-row">
+              <input id="onlyVerified" type="checkbox">
+              <span>Solo preguntas verificadas</span>
+            </label>
+            <label class="check-row">
+              <input id="onlyUnanswered" type="checkbox">
+              <span>Solo sin responder histórico</span>
+            </label>
+            <label class="check-row">
+              <input id="onlyWrong" type="checkbox">
+              <span>Solo preguntas falladas</span>
+            </label>
+            <label class="check-row">
+              <input id="randomOrder" type="checkbox">
+              <span>Orden aleatorio</span>
+            </label>
+            <p id="filterSummary" class="filter-summary">Mostrando todas las preguntas.</p>
+            <button id="startActivity" class="full" type="button">Empezar estudio</button>
+          </details>
+
+          <details class="control-section" id="progressDetails" open>
+            <summary>Histórico</summary>
+            <div class="stats-grid">
+              <div><strong id="statAnswered">0</strong><span>Preguntas</span></div>
+              <div><strong id="statAttempts">0</strong><span>Intentos</span></div>
+              <div><strong id="statCorrect">0</strong><span>Aciertos</span></div>
+              <div><strong id="statWrong">0</strong><span>Fallos</span></div>
+              <div><strong id="statRate">0%</strong><span>Tasa</span></div>
+            </div>
+            <div id="ratioBar" class="ratio-bar" aria-label="Ratio histórico"><span class="ratio-ok"></span><span class="ratio-bad"></span></div>
+            <div id="bankProgress" class="bank-progress"></div>
+            <button id="resetStats" class="secondary full" type="button">Borrar histórico</button>
+          </details>
+        </aside>
+
+        <section class="config-main">
+          <article id="resumeRoundCard" class="panel config-card hidden">
+            <h2>Ronda en curso</h2>
+            <p id="resumeRoundText"></p>
+            <div class="button-row">
+              <button id="resumeRound" type="button">Continuar ronda</button>
+              <button id="finishStoredRound" class="secondary" type="button">Finalizar ahora</button>
+            </div>
+          </article>
+
+          <article class="panel config-card">
+            <h2>Configuración</h2>
+            <p id="configDescription">Selecciona actividad, banco y filtros. En una ronda examen los ajustes quedan bloqueados al empezar.</p>
+            <div id="questionMap" class="question-map" aria-label="Mapa de preguntas"></div>
+          </article>
+
+          <article class="panel config-card">
+            <h2>Rondas guardadas</h2>
+            <div id="roundHistory" class="round-history"></div>
+          </article>
+        </section>
+      </section>
+
+      <section id="quizView" class="workspace hidden">
         <div class="question-toolbar">
-          <button id="prevQuestion" class="secondary nav-button" type="button" aria-label="Pregunta anterior">
-            <span class="nav-text">Anterior</span>
+          <button id="backToConfig" class="secondary nav-button" type="button" aria-label="Volver">
+            <span class="nav-text">Configurar</span>
             <span class="nav-icon" aria-hidden="true">&lt;</span>
           </button>
-          <div id="questionCounter" class="counter">0 / 0</div>
+          <div>
+            <div id="questionCounter" class="counter">0 / 0</div>
+            <div id="roundMiniStats" class="round-mini-stats hidden"></div>
+          </div>
           <button id="nextQuestion" class="secondary nav-button" type="button" aria-label="Pregunta siguiente">
             <span class="nav-text">Siguiente</span>
             <span class="nav-icon" aria-hidden="true">&gt;</span>
           </button>
         </div>
+
+        <div id="roundRatioBar" class="ratio-bar hidden" aria-label="Ratio de la ronda"><span class="ratio-ok"></span><span class="ratio-bad"></span></div>
 
         <article class="panel question-card">
           <div class="question-meta">
@@ -98,6 +134,7 @@
           <p id="questionText" class="question-text"></p>
           <div id="options" class="options"></div>
           <div id="answerFeedback" class="feedback hidden"></div>
+          <button id="finishRound" class="secondary full hidden" type="button">Finalizar ronda</button>
         </article>
 
         <article id="explanationPanel" class="panel explanation">
@@ -112,9 +149,21 @@
           </dl>
         </article>
       </section>
+
+      <section id="summaryView" class="workspace hidden">
+        <article class="panel config-card">
+          <h2>Resultado de la ronda</h2>
+          <div id="roundSummary" class="summary-grid"></div>
+          <div id="summaryRatioBar" class="ratio-bar" aria-label="Ratio final"><span class="ratio-ok"></span><span class="ratio-bad"></span></div>
+          <div class="button-row">
+            <button id="saveRound" type="button">Guardar resultado</button>
+            <button id="discardRound" class="secondary" type="button">No guardar</button>
+          </div>
+        </article>
+      </section>
     </main>
   </div>
 
-  <script type="module" src="src/app.js?v=7"></script>
+  <script type="module" src="src/app.js?v=8"></script>
 </body>
 </html>

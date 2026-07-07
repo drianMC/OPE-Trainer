@@ -9,9 +9,9 @@ Prototipo PWA con:
 - Modo estudio.
 - Modo test.
 - Progreso local.
-- Filtros basicos.
-- Interfaz compactada para movil.
-- PWA offline basica.
+- Filtros básicos.
+- Interfaz compactada para móvil.
+- PWA offline básica.
 
 ## v0.2.0-pilot
 
@@ -46,3 +46,19 @@ Cambios:
 - Si la instalación automática no está disponible, se muestra una indicación para usar `Añadir a pantalla de inicio`.
 - El panel desplegable recibe un fondo azul suave para diferenciarlo del contenido.
 - Cache PWA: `ope-trainer-pilot-v7`.
+
+## v0.4.0-pilot
+
+Cambios:
+
+- Se separa la app en configurador, vista de preguntas y resumen de ronda.
+- Se añade `Orden aleatorio`.
+- Se añade `Ronda examen` con filtros bloqueados al iniciar.
+- Se añade `Repasar falladas` usando el ratio histórico de fallos.
+- Se persiste una ronda activa para poder continuarla después.
+- Se permite finalizar ronda y guardar o descartar el registro de ronda.
+- Se añade histórico por pregunta: intentos, aciertos, fallos y estado visual por número.
+- Se añade listado de rondas guardadas.
+- `Reiniciar piloto` pasa a `Borrar histórico` con doble confirmación.
+- Las barras de rendimiento muestran aciertos en verde y fallos en rojo.
+- Cache PWA: `ope-trainer-pilot-v8`.
