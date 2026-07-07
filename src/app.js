@@ -15,6 +15,7 @@ const state = {
   filtered: [],
   studyQuestions: [],
   studyIndex: 0,
+  singleQuestion: null,
   configMode: "study",
   bank: "all",
   onlyVerified: false,
@@ -173,6 +174,13 @@ function bindEvents() {
   els.saveRound.addEventListener("click", saveFinishedRound);
   els.discardRound.addEventListener("click", discardFinishedRound);
 
+  els.questionMap.addEventListener("click", (event) => {
+    const button = event.target.closest("button[data-question-id]");
+    if (!button) return;
+    const question = getQuestionById(button.dataset.questionId);
+    if (question) showSingleQuestion(question);
+  });
+
   els.menuButton.addEventListener("click", () => {
     const open = els.controlPanel.classList.toggle("is-open");
     els.menuButton.setAttribute("aria-expanded", String(open));
@@ -316,6 +324,8 @@ function showConfig() {
   els.configView.classList.remove("hidden");
   els.quizView.classList.add("hidden");
   els.summaryView.classList.add("hidden");
+  state.quizMode = "config";
+  state.singleQuestion = null;
   renderConfig();
 }
 
@@ -328,6 +338,18 @@ function showStudy() {
   els.roundRatioBar.classList.add("hidden");
   els.finishRound.classList.add("hidden");
   renderQuestion(getCurrentStudyQuestion(), "study");
+}
+
+function showSingleQuestion(question) {
+  state.quizMode = "single";
+  state.singleQuestion = question;
+  els.configView.classList.add("hidden");
+  els.summaryView.classList.add("hidden");
+  els.quizView.classList.remove("hidden");
+  els.roundMiniStats.classList.add("hidden");
+  els.roundRatioBar.classList.add("hidden");
+  els.finishRound.classList.add("hidden");
+  renderQuestion(question, "single");
 }
 
 function showRound() {
@@ -375,9 +397,9 @@ function renderQuestion(question, mode) {
   }
 
   const roundAnswer = mode === "round" ? state.activeRound.answers[question.id] : null;
-  const total = mode === "round" ? state.activeRound.questionIds.length : state.studyQuestions.length;
-  const index = mode === "round" ? state.activeRound.currentIndex : state.studyIndex;
-  const reveal = mode === "study" || Boolean(roundAnswer);
+  const total = mode === "round" ? state.activeRound.questionIds.length : mode === "study" ? state.studyQuestions.length : 1;
+  const index = mode === "round" ? state.activeRound.currentIndex : mode === "study" ? state.studyIndex : 0;
+  const reveal = mode === "study" || mode === "single" || Boolean(roundAnswer);
 
   els.questionCounter.textContent = `${index + 1} / ${total}`;
   els.questionBank.textContent = question.bankTitle;
@@ -386,7 +408,7 @@ function renderQuestion(question, mode) {
   els.questionTitle.textContent = `Pregunta ${question.number}`;
   els.questionText.textContent = question.question;
   els.nextQuestion.disabled = index >= total - 1;
-  els.nextQuestion.classList.toggle("hidden", mode === "round" && index >= total - 1);
+  els.nextQuestion.classList.toggle("hidden", mode === "single" || (mode === "round" && index >= total - 1));
 
   els.options.innerHTML = question.options.map((option) => {
     const selected = roundAnswer?.selected === option.key;
@@ -405,7 +427,7 @@ function renderQuestion(question, mode) {
   }).join("");
 
   $$("#options .option").forEach((button) => {
-    button.disabled = mode === "study" || Boolean(roundAnswer);
+    button.disabled = mode === "study" || mode === "single" || Boolean(roundAnswer);
     button.addEventListener("click", () => answerRoundQuestion(question, button.dataset.option));
   });
 
@@ -627,7 +649,7 @@ function renderQuestionDot(question) {
       else classes.push("good");
       title = `Pregunta ${question.number}: ${item.correct || 0} bien, ${item.wrong || 0} mal, ${item.attempts} intentos`;
     }
-    return `<span class="${classes.join(" ")}" title="${title}">${question.number}</span>`;
+    return `<button type="button" class="${classes.join(" ")}" title="${title}" data-question-id="${question.id}" aria-label="${title}">${question.number}</button>`;
 }
 
 function renderRoundHistory() {

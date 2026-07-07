@@ -1,4 +1,4 @@
-const CACHE_NAME = "ope-trainer-full-v10";
+const CACHE_NAME = "ope-trainer-full-v11";
 const ASSETS = [
   "./",
   "./index.html",

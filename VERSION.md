@@ -83,3 +83,12 @@ Cambios:
 - Se normalizan etiquetas de estado visibles.
 - Se corrige el parser para recuperar opciones partidas por saltos de página en el PDF de mantenimiento.
 - Cache PWA: `ope-trainer-full-v10`.
+
+## v1.0.1-full
+
+Cambios:
+
+- Los números del `Histórico de respuestas` pasan a ser accesos directos.
+- Al pulsar un número se abre esa pregunta en modo consulta, con la respuesta y resolución visibles.
+- En esa consulta independiente solo queda disponible volver al menú principal.
+- Cache PWA: `ope-trainer-full-v11`.

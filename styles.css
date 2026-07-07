@@ -584,6 +584,15 @@ button:disabled {
   color: #475569;
   font-size: 12px;
   font-weight: 800;
+  padding: 0 4px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.question-dot:hover,
+.question-dot:focus-visible {
+  border-color: #2563eb;
+  outline: 2px solid rgba(37, 99, 235, 0.18);
 }
 
 .question-dot.good {
