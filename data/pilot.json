@@ -19593,7 +19593,15 @@
         },
         {
           "key": "b",
-          "text": "Los niveles de proceso serán verificados para constatar su adaptación a la aplicación, de acuerdo con la base de datos especificados en el proyecto o memoria técnica. Son válidos a estos efectos los protocolos establecidos en la norma UNE-EN-ISO 16484-"
+          "text": "Los niveles de proceso serán verificados para constatar su adaptación a la aplicación, de acuerdo con la base de datos especificados en el proyecto o memoria técnica. Son válidos a estos efectos los protocolos establecidos en la norma UNE-EN-ISO 16484-3."
+        },
+        {
+          "key": "c",
+          "text": "Los niveles de proceso no tendrán por qué ser verificados para constatar su adaptación a la aplicación."
+        },
+        {
+          "key": "d",
+          "text": "Los niveles de proceso serán verificados para constatar su adaptación a la aplicación, de acuerdo con la base de datos especificados en el proyecto o memoria técnica. Son válidos a estos efectos los protocolos establecidos en la norma UNE-EN-ISO 14684-3."
         }
       ],
       "correct": [

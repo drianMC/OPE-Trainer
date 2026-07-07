@@ -27,6 +27,8 @@ const state = {
   activeRound: loadActiveRound(),
   finishedRound: null,
   quizMode: "study",
+  finishArmed: false,
+  finishStoredArmed: false,
   deferredInstall: null,
   resetArmed: false,
 };
@@ -69,7 +71,9 @@ const els = {
   questionCounter: $("#questionCounter"),
   roundMiniStats: $("#roundMiniStats"),
   roundRatioBar: $("#roundRatioBar"),
+  prevQuestion: $("#prevQuestion"),
   nextQuestion: $("#nextQuestion"),
+  questionActions: $("#questionActions"),
   questionBank: $("#questionBank"),
   questionStatus: $("#questionStatus"),
   questionTitle: $("#questionTitle"),
@@ -167,10 +171,11 @@ function bindEvents() {
 
   els.startActivity.addEventListener("click", startActivity);
   els.resumeRound.addEventListener("click", () => showRound());
-  els.finishStoredRound.addEventListener("click", finishRound);
+  els.finishStoredRound.addEventListener("click", () => requestFinishRound("stored"));
   els.backToConfig.addEventListener("click", showConfig);
+  els.prevQuestion.addEventListener("click", previousQuestion);
   els.nextQuestion.addEventListener("click", nextQuestion);
-  els.finishRound.addEventListener("click", finishRound);
+  els.finishRound.addEventListener("click", () => requestFinishRound("active"));
   els.saveRound.addEventListener("click", saveFinishedRound);
   els.discardRound.addEventListener("click", discardFinishedRound);
 
@@ -282,7 +287,7 @@ function getConfigScopeSummary() {
   const bankLabel = state.bank === "all"
     ? "todos los bancos"
     : getBankScopeQuestions()[0]?.bankTitle || "banco seleccionado";
-  return `Actividad preparada sobre ${bankLabel}: ${state.filtered.length} preguntas disponibles con los filtros actuales.`;
+  return `Ronda preparada sobre ${bankLabel}: ${state.filtered.length} preguntas disponibles con los filtros actuales.`;
 }
 
 function startActivity() {
@@ -326,7 +331,9 @@ function showConfig() {
   els.summaryView.classList.add("hidden");
   state.quizMode = "config";
   state.singleQuestion = null;
+  resetFinishConfirmation();
   renderConfig();
+  requestAnimationFrame(() => window.scrollTo({ top: 0, left: 0 }));
 }
 
 function showStudy() {
@@ -337,6 +344,8 @@ function showStudy() {
   els.roundMiniStats.classList.add("hidden");
   els.roundRatioBar.classList.add("hidden");
   els.finishRound.classList.add("hidden");
+  els.questionActions.classList.remove("hidden");
+  resetFinishConfirmation();
   renderQuestion(getCurrentStudyQuestion(), "study");
 }
 
@@ -349,6 +358,8 @@ function showSingleQuestion(question) {
   els.roundMiniStats.classList.add("hidden");
   els.roundRatioBar.classList.add("hidden");
   els.finishRound.classList.add("hidden");
+  els.questionActions.classList.add("hidden");
+  resetFinishConfirmation();
   renderQuestion(question, "single");
 }
 
@@ -361,6 +372,8 @@ function showRound() {
   els.roundMiniStats.classList.remove("hidden");
   els.roundRatioBar.classList.remove("hidden");
   els.finishRound.classList.remove("hidden");
+  els.questionActions.classList.remove("hidden");
+  resetFinishConfirmation();
   renderQuestion(getCurrentRoundQuestion(), "round");
 }
 
@@ -392,6 +405,7 @@ function renderQuestion(question, mode) {
     els.options.innerHTML = "";
     els.explanationPanel.classList.add("hidden");
     els.answerFeedback.classList.add("hidden");
+    els.prevQuestion.disabled = true;
     els.nextQuestion.disabled = true;
     return;
   }
@@ -407,8 +421,9 @@ function renderQuestion(question, mode) {
   els.questionStatus.className = `status-pill ${question.status}`;
   els.questionTitle.textContent = `Pregunta ${question.number}`;
   els.questionText.textContent = question.question;
+  els.prevQuestion.disabled = index <= 0;
   els.nextQuestion.disabled = index >= total - 1;
-  els.nextQuestion.classList.toggle("hidden", mode === "single" || (mode === "round" && index >= total - 1));
+  els.questionActions.classList.toggle("hidden", mode === "single");
 
   els.options.innerHTML = question.options.map((option) => {
     const selected = roundAnswer?.selected === option.key;
@@ -490,7 +505,27 @@ function updateQuestionHistory(questionId, answer) {
   state.history[questionId] = previous;
 }
 
+function previousQuestion() {
+  resetFinishConfirmation();
+
+  if (state.quizMode === "round" && state.activeRound && !els.quizView.classList.contains("hidden")) {
+    if (state.activeRound.currentIndex > 0) {
+      state.activeRound.currentIndex -= 1;
+      saveActiveRound(state.activeRound);
+      renderQuestion(getCurrentRoundQuestion(), "round");
+    }
+    return;
+  }
+
+  if (state.quizMode === "study" && state.studyIndex > 0) {
+    state.studyIndex -= 1;
+    renderQuestion(getCurrentStudyQuestion(), "study");
+  }
+}
+
 function nextQuestion() {
+  resetFinishConfirmation();
+
   if (state.quizMode === "round" && state.activeRound && !els.quizView.classList.contains("hidden")) {
     if (state.activeRound.currentIndex < state.activeRound.questionIds.length - 1) {
       state.activeRound.currentIndex += 1;
@@ -500,10 +535,41 @@ function nextQuestion() {
     return;
   }
 
-  if (state.studyIndex < state.studyQuestions.length - 1) {
+  if (state.quizMode === "study" && state.studyIndex < state.studyQuestions.length - 1) {
     state.studyIndex += 1;
     renderQuestion(getCurrentStudyQuestion(), "study");
   }
+}
+
+function requestFinishRound(source) {
+  const key = source === "stored" ? "finishStoredArmed" : "finishArmed";
+  const button = source === "stored" ? els.finishStoredRound : els.finishRound;
+  const label = source === "stored" ? "Finalizar ahora" : "Finalizar";
+
+  if (!state[key]) {
+    state[key] = true;
+    button.textContent = "Confirmar fin";
+    button.classList.add("danger");
+    window.setTimeout(() => {
+      if (!state[key]) return;
+      state[key] = false;
+      button.textContent = label;
+      button.classList.remove("danger");
+    }, 5000);
+    return;
+  }
+
+  resetFinishConfirmation();
+  finishRound();
+}
+
+function resetFinishConfirmation() {
+  state.finishArmed = false;
+  state.finishStoredArmed = false;
+  els.finishRound.textContent = "Finalizar";
+  els.finishRound.classList.remove("danger");
+  els.finishStoredRound.textContent = "Finalizar ahora";
+  els.finishStoredRound.classList.remove("danger");
 }
 
 function finishRound() {
@@ -627,7 +693,7 @@ function renderQuestionMap() {
     const stats = summarizeHistory(questions);
     const dots = questions.map((question) => renderQuestionDot(question)).join("");
     return `
-      <details class="history-bank" ${bank === state.bank || state.bank === "all" ? "open" : ""}>
+      <details class="history-bank">
         <summary>
           <span>${label}</span>
           <small>${stats.answeredQuestions}/${questions.length} con histórico · ${stats.correct} bien · ${stats.wrong} mal</small>

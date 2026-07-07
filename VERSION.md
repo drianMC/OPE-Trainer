@@ -92,3 +92,15 @@ Cambios:
 - Al pulsar un número se abre esa pregunta en modo consulta, con la respuesta y resolución visibles.
 - En esa consulta independiente solo queda disponible volver al menú principal.
 - Cache PWA: `ope-trainer-full-v11`.
+
+## v1.0.2-full
+
+Cambios:
+
+- En ronda, `Finalizar` pasa a la barra superior.
+- `Anterior` y `Siguiente` pasan a la zona inferior de la pregunta.
+- `Finalizar` exige doble confirmación.
+- El histórico por banco queda plegado por defecto.
+- `Actividad` pasa a llamarse `Tipo de ronda`.
+- Se fuerza scroll superior al volver al configurador para evitar saltos visuales en móvil.
+- Cache PWA: `ope-trainer-full-v12`.

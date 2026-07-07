@@ -405,6 +405,17 @@ button:disabled {
   padding: 18px;
 }
 
+.question-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.question-actions button {
+  width: 100%;
+}
+
 .question-meta {
   display: flex;
   gap: 8px;
@@ -717,7 +728,7 @@ button:disabled {
   }
 
   .question-toolbar {
-    grid-template-columns: minmax(0, 1fr) 42px 42px;
+    grid-template-columns: minmax(0, 1fr) 42px minmax(76px, 92px);
     gap: 8px;
   }
 
@@ -742,7 +753,7 @@ button:disabled {
     grid-row: 1;
   }
 
-  #nextQuestion {
+  #finishRound {
     grid-column: 3;
     grid-row: 1;
   }
@@ -830,6 +841,6 @@ button:disabled {
   }
 
   .question-toolbar {
-    grid-template-columns: minmax(0, 1fr) 40px 40px;
+    grid-template-columns: minmax(0, 1fr) 40px minmax(76px, 86px);
   }
 }

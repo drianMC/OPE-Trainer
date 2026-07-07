@@ -251,6 +251,41 @@ def parse_correct(answer_label: str) -> list[str]:
     return []
 
 
+def fix_known_extraction_errors(bank: str, number: int, options: list[dict[str, str]]) -> list[dict[str, str]]:
+    if bank == "mantenimiento" and number == 30:
+        return [
+            {
+                "key": "a",
+                "text": (
+                    "Los niveles de proceso serán verificados para constatar su adaptación a la aplicación, "
+                    "de acuerdo con la base de datos especificados en el proyecto o memoria técnica. No se "
+                    "consideran a estos efectos los protocolos establecidos en la norma UNE-EN-ISO 16484-3."
+                ),
+            },
+            {
+                "key": "b",
+                "text": (
+                    "Los niveles de proceso serán verificados para constatar su adaptación a la aplicación, "
+                    "de acuerdo con la base de datos especificados en el proyecto o memoria técnica. Son "
+                    "válidos a estos efectos los protocolos establecidos en la norma UNE-EN-ISO 16484-3."
+                ),
+            },
+            {
+                "key": "c",
+                "text": "Los niveles de proceso no tendrán por qué ser verificados para constatar su adaptación a la aplicación.",
+            },
+            {
+                "key": "d",
+                "text": (
+                    "Los niveles de proceso serán verificados para constatar su adaptación a la aplicación, "
+                    "de acuerdo con la base de datos especificados en el proyecto o memoria técnica. Son "
+                    "válidos a estos efectos los protocolos establecidos en la norma UNE-EN-ISO 14684-3."
+                ),
+            },
+        ]
+    return options
+
+
 def split_question_blocks(text: str) -> dict[int, str]:
     matches = list(re.finditer(r"(?m)^# Pregunta\s+(\d+)\s*$", text))
     blocks: dict[int, str] = {}
@@ -315,6 +350,7 @@ def build_bank(config: dict) -> list[dict]:
             {"key": key, "text": restore_visible_text(value)}
             for key, value in sorted(q.get("options", {}).items())
         ]
+        options = fix_known_extraction_errors(config["bank"], number, options)
         raw_status_label = m.get("statusLabel", "")
         answer_label = m.get("answerLabel", "")
         status = normalize_status(raw_status_label)

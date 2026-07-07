@@ -7,7 +7,7 @@
   <title>OPE Trainer</title>
   <link rel="manifest" href="manifest.json">
   <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=11">
+  <link rel="stylesheet" href="styles.css?v=12">
 </head>
 <body>
   <div class="app-shell">
@@ -34,7 +34,7 @@
           </div>
 
           <details class="control-section" id="modeDetails" open>
-            <summary>Actividad</summary>
+            <summary>Tipo de ronda</summary>
             <div class="segmented">
               <button class="is-active" type="button" data-config-mode="study">Estudio</button>
               <button type="button" data-config-mode="exam">Ronda examen</button>
@@ -122,10 +122,7 @@
             <div id="questionCounter" class="counter">0 / 0</div>
             <div id="roundMiniStats" class="round-mini-stats hidden"></div>
           </div>
-          <button id="nextQuestion" class="secondary nav-button" type="button" aria-label="Pregunta siguiente">
-            <span class="nav-text">Siguiente</span>
-            <span class="nav-icon" aria-hidden="true">&gt;</span>
-          </button>
+          <button id="finishRound" class="secondary nav-button hidden" type="button">Finalizar</button>
         </div>
 
         <div id="roundRatioBar" class="ratio-bar hidden" aria-label="Ratio de la ronda"><span class="ratio-ok"></span><span class="ratio-bad"></span></div>
@@ -139,7 +136,10 @@
           <p id="questionText" class="question-text"></p>
           <div id="options" class="options"></div>
           <div id="answerFeedback" class="feedback hidden"></div>
-          <button id="finishRound" class="secondary full hidden" type="button">Finalizar ronda</button>
+          <div id="questionActions" class="question-actions">
+            <button id="prevQuestion" class="secondary" type="button">Anterior</button>
+            <button id="nextQuestion" class="secondary" type="button">Siguiente</button>
+          </div>
         </article>
 
         <article id="explanationPanel" class="panel explanation">
@@ -169,6 +169,6 @@
     </main>
   </div>
 
-  <script type="module" src="src/app.js?v=11"></script>
+  <script type="module" src="src/app.js?v=12"></script>
 </body>
 </html>
