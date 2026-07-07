@@ -62,3 +62,13 @@ Cambios:
 - `Reiniciar piloto` pasa a `Borrar histórico` con doble confirmación.
 - Las barras de rendimiento muestran aciertos en verde y fallos en rojo.
 - Cache PWA: `ope-trainer-pilot-v8`.
+
+## v0.4.1-pilot
+
+Cambios:
+
+- El mapa de preguntas sale de la tarjeta de `Configuración`.
+- Se crea una tarjeta propia `Histórico de respuestas`.
+- El histórico de respuestas se agrupa por banco en desplegables independientes.
+- La tarjeta de `Configuración` muestra solo el alcance de la actividad preparada.
+- Cache PWA: `ope-trainer-pilot-v9`.

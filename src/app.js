@@ -53,6 +53,7 @@ const els = {
   resumeRoundText: $("#resumeRoundText"),
   resumeRound: $("#resumeRound"),
   finishStoredRound: $("#finishStoredRound"),
+  configScopeSummary: $("#configScopeSummary"),
   questionMap: $("#questionMap"),
   roundHistory: $("#roundHistory"),
   statAnswered: $("#statAnswered"),
@@ -252,6 +253,7 @@ function renderFilterSummary() {
 
 function renderConfig() {
   els.startActivity.textContent = getStartLabel();
+  els.configScopeSummary.textContent = getConfigScopeSummary();
   els.resumeRoundCard.classList.toggle("hidden", !state.activeRound);
   if (state.activeRound) {
     const stats = summarizeRound(state.activeRound);
@@ -266,6 +268,13 @@ function getStartLabel() {
   if (state.configMode === "study") return "Empezar estudio";
   if (state.configMode === "review") return "Iniciar repaso";
   return "Iniciar ronda";
+}
+
+function getConfigScopeSummary() {
+  const bankLabel = state.bank === "all"
+    ? "todos los bancos"
+    : getBankScopeQuestions()[0]?.bankTitle || "banco seleccionado";
+  return `Actividad preparada sobre ${bankLabel}: ${state.filtered.length} preguntas disponibles con los filtros actuales.`;
 }
 
 function startActivity() {
@@ -590,8 +599,24 @@ function renderBankProgress() {
 }
 
 function renderQuestionMap() {
-  const scoped = getBankScopeQuestions();
-  els.questionMap.innerHTML = scoped.map((question) => {
+  const banks = Array.from(new Map(state.questions.map((question) => [question.bank, question.bankTitle])).entries());
+  els.questionMap.innerHTML = banks.map(([bank, label]) => {
+    const questions = state.questions.filter((question) => question.bank === bank);
+    const stats = summarizeHistory(questions);
+    const dots = questions.map((question) => renderQuestionDot(question)).join("");
+    return `
+      <details class="history-bank" ${bank === state.bank || state.bank === "all" ? "open" : ""}>
+        <summary>
+          <span>${label}</span>
+          <small>${stats.answeredQuestions}/${questions.length} con histórico · ${stats.correct} bien · ${stats.wrong} mal</small>
+        </summary>
+        <div class="question-map">${dots}</div>
+      </details>
+    `;
+  }).join("");
+}
+
+function renderQuestionDot(question) {
     const item = state.history[question.id];
     const classes = ["question-dot"];
     let title = `Pregunta ${question.number}: sin histórico`;
@@ -603,7 +628,6 @@ function renderQuestionMap() {
       title = `Pregunta ${question.number}: ${item.correct || 0} bien, ${item.wrong || 0} mal, ${item.attempts} intentos`;
     }
     return `<span class="${classes.join(" ")}" title="${title}">${question.number}</span>`;
-  }).join("");
 }
 
 function renderRoundHistory() {

@@ -7,7 +7,7 @@
   <title>OPE Trainer</title>
   <link rel="manifest" href="manifest.json">
   <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=8">
+  <link rel="stylesheet" href="styles.css?v=9">
 </head>
 <body>
   <div class="app-shell">
@@ -97,7 +97,12 @@
           <article class="panel config-card">
             <h2>Configuración</h2>
             <p id="configDescription">Selecciona actividad, banco y filtros. En una ronda examen los ajustes quedan bloqueados al empezar.</p>
-            <div id="questionMap" class="question-map" aria-label="Mapa de preguntas"></div>
+            <p id="configScopeSummary" class="config-scope-summary"></p>
+          </article>
+
+          <article class="panel config-card">
+            <h2>Histórico de respuestas</h2>
+            <div id="questionMap" class="question-history-groups" aria-label="Histórico de respuestas por banco"></div>
           </article>
 
           <article class="panel config-card">
@@ -164,6 +169,6 @@
     </main>
   </div>
 
-  <script type="module" src="src/app.js?v=8"></script>
+  <script type="module" src="src/app.js?v=9"></script>
 </body>
 </html>

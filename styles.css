@@ -364,6 +364,11 @@ button:disabled {
   line-height: 1.45;
 }
 
+.config-scope-summary {
+  margin-bottom: 0 !important;
+  font-weight: 700;
+}
+
 .button-row {
   display: flex;
   flex-wrap: wrap;
@@ -529,6 +534,44 @@ button:disabled {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(42px, 1fr));
   gap: 7px;
+}
+
+.question-history-groups {
+  display: grid;
+  gap: 10px;
+}
+
+.history-bank {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfdff;
+  padding: 10px;
+}
+
+.history-bank summary {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.history-bank summary::-webkit-details-marker {
+  display: none;
+}
+
+.history-bank summary span {
+  font-weight: 800;
+  color: #1f2937;
+}
+
+.history-bank summary small {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.history-bank[open] summary {
+  margin-bottom: 10px;
 }
 
 .question-dot {
